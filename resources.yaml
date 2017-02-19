@@ -43,6 +43,10 @@ items:
             - config/server.properties
             - --override
             - advertised.host.name=${NAME}
+            - --override
+            - log.segment.bytes=10485760
+            - --override
+            - log.retention.bytes=10485760
             volumeMounts:
             - mountPath: /tmp/kafka-logs
               name: kafka-logs
