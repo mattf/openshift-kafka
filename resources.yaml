@@ -19,7 +19,7 @@ items:
   - name: IMAGE
     description: Image with Apache Kafka and Apache ZooKeeper
     required: true
-    value: mattf/openshift-kafka
+    value: rondinif/openshift-kafka
   objects:
   - apiVersion: v1
     kind: DeploymentConfig
