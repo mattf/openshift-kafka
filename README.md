@@ -15,7 +15,7 @@ The architecture is as follows:
 1. Load resources (Templates, DeploymentConfigs, Services)
 
 ```bash
-oc create -f https://rondinif.githubusercontent.com/mattf/openshift-kafka/master/resources.yaml
+oc create -f https://raw.githubusercontent.com/rondinif/openshift-kafka/master/resources.yaml
 ```
 
 1. Deploy the Apache Kafka + Apache Zookeeper pod
