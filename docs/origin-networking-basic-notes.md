@@ -1,10 +1,33 @@
-# networking basic
+# Docker and Kubernetes networking basic
+WARNING: THIS DOC NEED REVIEW 
 
-## host
+## Exposing Openshift Service to Host 
+You may want portforward a svc to localhost:
+- ```oc get pods``` : to get the ```<POD-NAME>```
+- ```oc get services``` : to get the ```<SERVICE-PORT>```
+- ```oc port-forward <POD-NAME> <SERTICE-PORT>```
+
+lab example:
+``` bash
+openshift-kafka (develop)*$ oc get pods
+NAME                   READY     STATUS    RESTARTS   AGE
+apache-kafka-1-ln40b   2/2       Running   0          12h
+
+openshift-kafka (develop)*$ oc get services
+NAME           CLUSTER-IP     EXTERNAL-IP   PORT(S)             AGE
+apache-kafka   172.30.0.190   <none>        9092/TCP,2181/TCP   2d
+
+openshift-kafka (develop)*$ oc port-forward apache-kafka-1-k7d8j 9092
+Forwarding from 127.0.0.1:9092 -> 9092
+Forwarding from [::1]:9092 -> 9092
 
 
+Handling connection for 9092
+Handling connection for 9092
+```
+now  ```apache-kafka``` service is available on ```127.0.0.1:9092``` to your host processes.
 
-## pods
+# Kubernetes Pods networking lab
 ```
 $ oc attach kafka-debug-1-77kjx -c kafka-debug -i -t    
 bash-4.2$ uname -a  
@@ -13,7 +36,7 @@ bash-4.2$ id
 uid=1000040000 gid=0(root) groups=0(root),1000040000
 ``` 
 
-## Note about networking 
+## Notes about Docker networking 
 ### docker network ls
 ``` bash 
  $ docker network ls
@@ -27,6 +50,8 @@ f57e2ec0f960        host                host                local
 to inpect ```IPv4Address``` for each pod:
 ``` bash
 $ docker network inspect ff39ca7ea369
+```
+``` json
 [
     {
         "Name": "bridge",
@@ -74,10 +99,9 @@ $ docker network inspect ff39ca7ea369
         "Labels": {}
     }
 ]
-
-
-  ronda@MacBook-Pro-di-Franco.local ~/projects/rondinif/openshift-kafka/doc  
- 04:33:09 $ oc get all
+```
+``` bash 
+$ oc get all
 NAME              REVISION   DESIRED   CURRENT   TRIGGERED BY
 dc/apache-kafka   1          1         1         config
 dc/kafka-debug    1          1         1         config
@@ -92,12 +116,10 @@ svc/apache-kafka   172.30.48.115   <none>        9092/TCP,2181/TCP   22h
 NAME                      READY     STATUS    RESTARTS   AGE
 po/apache-kafka-1-k7d8j   2/2       Running   1          22h
 po/kafka-debug-1-77kjx    1/1       Running   0          46s
-  ronda@MacBook-Pro-di-Franco.local ~/projects/rondinif/openshift-kafka/doc  
- 04:43:11 $ docker network inspect -v ff39ca7ea369
-unknown shorthand flag: 'v' in -v
-See 'docker network inspect --help'.
-  ronda@MacBook-Pro-di-Franco.local ~/projects/rondinif/openshift-kafka/doc  
- 04:43:24 $ docker network inspect  ff39ca7ea369
+
+$ docker network inspect  ff39ca7ea369
+```
+``` json
 [
     {
         "Name": "bridge",
@@ -146,6 +168,7 @@ See 'docker network inspect --help'.
     }
 ]
 ```
+
 ### ip exposed to host and internal to docker
 both pod's ip reported by ```network inspect``` and ```svc CLUSTER-IP``` reported by ```oc get all``` are visibile in the docker network from inside 
 but not from the host (i.e: mac os x hosting the containers)
@@ -168,7 +191,7 @@ po/apache-kafka-1-k7d8j   2/2       Running   1          22h
 po/kafka-debug-1-77kjx    1/1       Running   0          2m
 ```
 
-for example when a pod:
+lab example: network ```ping``` from a terminal attacched to a ***pod container***:
 ```
 bash-4.2$ uname -a
 Linux kafka-debug-1-77kjx 4.9.13-moby #1 SMP Sat Mar 25 02:48:44 UTC 2017 x86_64 x86_64 x86_64 GNU/Linux
@@ -208,10 +231,11 @@ PING 127.17.0.3 (127.17.0.3) 56(84) bytes of data.
 rtt min/avg/max/mdev = 0.054/0.056/0.058/0.008 ms
 ```
 
-### Ogni POD avrà il suo ip ?
-richiedendo un nuovo pod di ```kafka-debug``` controlliamo che 
-il replication controller ```rc/kafka-debug-1```  voglia ora 2 pods e che questi pods ```kafka-debug```
-siano stati effettivamente avviati, infine con ```docker network inspect``` vediamo quali sono gli IP dei vari pods:
+### POD ip
+by creating a new  ```kafka-debug``` pod we can check the 
+***replication controller*** ```rc/kafka-debug-1```  DESIRED pods increase and 
+these ```kafka-debug``` pods would be actually will be served as soon as possible.
+, then by  ```docker network inspect``` we can see each pod IP-address:
 
 ``` bash
 $ oc get all
@@ -232,6 +256,8 @@ po/kafka-debug-1-77kjx    1/1       Running   0          8m
 po/kafka-debug-1-rkw2t    1/1       Running   0          1m
  
 $ docker network inspect  ff39ca7ea369
+```
+``` json
 [
     {
         "Name": "bridge",
@@ -287,19 +313,21 @@ $ docker network inspect  ff39ca7ea369
     }
 ]
 ```
-anche dalla console si possono vedere gli indirizzi IP acquisito da  ogni singolo POD
+Also the ***console*** show the IP-address acquired by each POD
 ![](./img/pod-ip-001.png)
 
-
-
-## Exposing service to Host 
-oc 
-``` bash
-oc port-forward apache-kafka-1-k7d8j 9092
-Forwarding from 127.0.0.1:9092 -> 9092
-Forwarding from [::1]:9092 -> 9092
-
-
-Handling connection for 9092
-Handling connection for 9092
+see also ```oc get endpoints```:
+``` bash 
+openshift-kafka (develop)*$ oc get endpoints -a
+NAME           ENDPOINTS                         AGE
+apache-kafka   172.17.0.2:2181,172.17.0.2:9092   2d 
 ```
+and the [Kubernetes v1 REST API](https://docs.openshift.org/latest/rest_api/kubernetes_v1.html) to list or watch objects of kind Endpoints ```GET /api/v1/endpoints```.
+
+```GET {{protocol}}://{{host-name}}:{{host-port}}/api/v1/endpoints```
+
+![](./img/kubernetes-api-v1-endpoints-001.png)
+
+``` GET {{protocol}}://{{host-name}}:{{host-port}}/api/v1/namespaces/kafka-lab/endpoints/apache-kafka```
+
+![](./img/kubernetes-api-v1-endpoints-002.png)
