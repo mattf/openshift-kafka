@@ -1,0 +1,728 @@
+{
+  "kind": "APIResourceList",
+  "groupVersion": "v1",
+  "resources": [
+    {
+      "name": "appliedclusterresourcequotas",
+      "namespaced": true,
+      "kind": "AppliedClusterResourceQuota",
+      "verbs": [
+        "get",
+        "list"
+      ]
+    },
+    {
+      "name": "buildconfigs",
+      "namespaced": true,
+      "kind": "BuildConfig",
+      "verbs": [
+        "create",
+        "delete",
+        "deletecollection",
+        "get",
+        "list",
+        "patch",
+        "update",
+        "watch"
+      ]
+    },
+    {
+      "name": "buildconfigs/instantiate",
+      "namespaced": true,
+      "kind": "BuildRequest",
+      "verbs": [
+        "create"
+      ]
+    },
+    {
+      "name": "buildconfigs/instantiatebinary",
+      "namespaced": true,
+      "kind": "BinaryBuildRequestOptions",
+      "verbs": []
+    },
+    {
+      "name": "buildconfigs/webhooks",
+      "namespaced": true,
+      "kind": "Build",
+      "verbs": []
+    },
+    {
+      "name": "builds",
+      "namespaced": true,
+      "kind": "Build",
+      "verbs": [
+        "create",
+        "delete",
+        "deletecollection",
+        "get",
+        "list",
+        "patch",
+        "update",
+        "watch"
+      ]
+    },
+    {
+      "name": "builds/clone",
+      "namespaced": true,
+      "kind": "BuildRequest",
+      "verbs": [
+        "create"
+      ]
+    },
+    {
+      "name": "builds/details",
+      "namespaced": true,
+      "kind": "Build",
+      "verbs": [
+        "update"
+      ]
+    },
+    {
+      "name": "builds/log",
+      "namespaced": true,
+      "kind": "BuildLog",
+      "verbs": [
+        "get"
+      ]
+    },
+    {
+      "name": "clusternetworks",
+      "namespaced": false,
+      "kind": "ClusterNetwork",
+      "verbs": [
+        "create",
+        "delete",
+        "deletecollection",
+        "get",
+        "list",
+        "patch",
+        "update",
+        "watch"
+      ]
+    },
+    {
+      "name": "clusterpolicies",
+      "namespaced": false,
+      "kind": "ClusterPolicy",
+      "verbs": [
+        "create",
+        "delete",
+        "deletecollection",
+        "get",
+        "list",
+        "patch",
+        "update",
+        "watch"
+      ]
+    },
+    {
+      "name": "clusterpolicybindings",
+      "namespaced": false,
+      "kind": "ClusterPolicyBinding",
+      "verbs": [
+        "create",
+        "delete",
+        "deletecollection",
+        "get",
+        "list",
+        "patch",
+        "update",
+        "watch"
+      ]
+    },
+    {
+      "name": "clusterresourcequotas",
+      "namespaced": false,
+      "kind": "ClusterResourceQuota",
+      "verbs": [
+        "create",
+        "delete",
+        "deletecollection",
+        "get",
+        "list",
+        "patch",
+        "update",
+        "watch"
+      ]
+    },
+    {
+      "name": "clusterresourcequotas/status",
+      "namespaced": false,
+      "kind": "ClusterResourceQuota",
+      "verbs": [
+        "get",
+        "patch",
+        "update"
+      ]
+    },
+    {
+      "name": "clusterrolebindings",
+      "namespaced": false,
+      "kind": "ClusterRoleBinding",
+      "verbs": [
+        "create",
+        "delete",
+        "get",
+        "list",
+        "patch",
+        "update"
+      ]
+    },
+    {
+      "name": "clusterroles",
+      "namespaced": false,
+      "kind": "ClusterRole",
+      "verbs": [
+        "create",
+        "delete",
+        "get",
+        "list",
+        "patch",
+        "update"
+      ]
+    },
+    {
+      "name": "deploymentconfigrollbacks",
+      "namespaced": true,
+      "kind": "DeploymentConfigRollback",
+      "verbs": [
+        "create"
+      ]
+    },
+    {
+      "name": "deploymentconfigs",
+      "namespaced": true,
+      "kind": "DeploymentConfig",
+      "verbs": [
+        "create",
+        "delete",
+        "deletecollection",
+        "get",
+        "list",
+        "patch",
+        "update",
+        "watch"
+      ]
+    },
+    {
+      "name": "deploymentconfigs/instantiate",
+      "namespaced": true,
+      "kind": "DeploymentRequest",
+      "verbs": [
+        "create"
+      ]
+    },
+    {
+      "name": "deploymentconfigs/log",
+      "namespaced": true,
+      "kind": "DeploymentLog",
+      "verbs": [
+        "get"
+      ]
+    },
+    {
+      "name": "deploymentconfigs/rollback",
+      "namespaced": true,
+      "kind": "DeploymentConfigRollback",
+      "verbs": [
+        "create"
+      ]
+    },
+    {
+      "name": "deploymentconfigs/scale",
+      "namespaced": true,
+      "kind": "Scale",
+      "verbs": [
+        "get",
+        "patch",
+        "update"
+      ]
+    },
+    {
+      "name": "deploymentconfigs/status",
+      "namespaced": true,
+      "kind": "DeploymentConfig",
+      "verbs": [
+        "get",
+        "patch",
+        "update"
+      ]
+    },
+    {
+      "name": "egressnetworkpolicies",
+      "namespaced": true,
+      "kind": "EgressNetworkPolicy",
+      "verbs": [
+        "create",
+        "delete",
+        "deletecollection",
+        "get",
+        "list",
+        "patch",
+        "update",
+        "watch"
+      ]
+    },
+    {
+      "name": "generatedeploymentconfigs",
+      "namespaced": true,
+      "kind": "DeploymentConfig",
+      "verbs": []
+    },
+    {
+      "name": "groups",
+      "namespaced": false,
+      "kind": "Group",
+      "verbs": [
+        "create",
+        "delete",
+        "deletecollection",
+        "get",
+        "list",
+        "patch",
+        "update",
+        "watch"
+      ]
+    },
+    {
+      "name": "hostsubnets",
+      "namespaced": false,
+      "kind": "HostSubnet",
+      "verbs": [
+        "create",
+        "delete",
+        "deletecollection",
+        "get",
+        "list",
+        "patch",
+        "update",
+        "watch"
+      ]
+    },
+    {
+      "name": "identities",
+      "namespaced": false,
+      "kind": "Identity",
+      "verbs": [
+        "create",
+        "delete",
+        "deletecollection",
+        "get",
+        "list",
+        "patch",
+        "update",
+        "watch"
+      ]
+    },
+    {
+      "name": "images",
+      "namespaced": false,
+      "kind": "Image",
+      "verbs": [
+        "create",
+        "delete",
+        "deletecollection",
+        "get",
+        "list",
+        "patch",
+        "update",
+        "watch"
+      ]
+    },
+    {
+      "name": "imagesignatures",
+      "namespaced": false,
+      "kind": "ImageSignature",
+      "verbs": [
+        "create",
+        "delete"
+      ]
+    },
+    {
+      "name": "imagestreamimages",
+      "namespaced": true,
+      "kind": "ImageStreamImage",
+      "verbs": [
+        "get"
+      ]
+    },
+    {
+      "name": "imagestreamimports",
+      "namespaced": true,
+      "kind": "ImageStreamImport",
+      "verbs": [
+        "create"
+      ]
+    },
+    {
+      "name": "imagestreammappings",
+      "namespaced": true,
+      "kind": "ImageStreamMapping",
+      "verbs": [
+        "create"
+      ]
+    },
+    {
+      "name": "imagestreams",
+      "namespaced": true,
+      "kind": "ImageStream",
+      "verbs": [
+        "create",
+        "delete",
+        "deletecollection",
+        "get",
+        "list",
+        "patch",
+        "update",
+        "watch"
+      ]
+    },
+    {
+      "name": "imagestreams/secrets",
+      "namespaced": true,
+      "kind": "SecretList",
+      "verbs": [
+        "get"
+      ]
+    },
+    {
+      "name": "imagestreams/status",
+      "namespaced": true,
+      "kind": "ImageStream",
+      "verbs": [
+        "get",
+        "patch",
+        "update"
+      ]
+    },
+    {
+      "name": "imagestreamtags",
+      "namespaced": true,
+      "kind": "ImageStreamTag",
+      "verbs": [
+        "create",
+        "delete",
+        "get",
+        "list",
+        "patch",
+        "update"
+      ]
+    },
+    {
+      "name": "localresourceaccessreviews",
+      "namespaced": true,
+      "kind": "LocalResourceAccessReview",
+      "verbs": [
+        "create"
+      ]
+    },
+    {
+      "name": "localsubjectaccessreviews",
+      "namespaced": true,
+      "kind": "LocalSubjectAccessReview",
+      "verbs": [
+        "create"
+      ]
+    },
+    {
+      "name": "netnamespaces",
+      "namespaced": false,
+      "kind": "NetNamespace",
+      "verbs": [
+        "create",
+        "delete",
+        "deletecollection",
+        "get",
+        "list",
+        "patch",
+        "update",
+        "watch"
+      ]
+    },
+    {
+      "name": "oauthaccesstokens",
+      "namespaced": false,
+      "kind": "OAuthAccessToken",
+      "verbs": [
+        "create",
+        "delete",
+        "deletecollection",
+        "get",
+        "list",
+        "patch",
+        "update",
+        "watch"
+      ]
+    },
+    {
+      "name": "oauthauthorizetokens",
+      "namespaced": false,
+      "kind": "OAuthAuthorizeToken",
+      "verbs": [
+        "create",
+        "delete",
+        "deletecollection",
+        "get",
+        "list",
+        "patch",
+        "update",
+        "watch"
+      ]
+    },
+    {
+      "name": "oauthclientauthorizations",
+      "namespaced": false,
+      "kind": "OAuthClientAuthorization",
+      "verbs": [
+        "create",
+        "delete",
+        "deletecollection",
+        "get",
+        "list",
+        "patch",
+        "update",
+        "watch"
+      ]
+    },
+    {
+      "name": "oauthclients",
+      "namespaced": false,
+      "kind": "OAuthClient",
+      "verbs": [
+        "create",
+        "delete",
+        "deletecollection",
+        "get",
+        "list",
+        "patch",
+        "update",
+        "watch"
+      ]
+    },
+    {
+      "name": "podsecuritypolicyreviews",
+      "namespaced": true,
+      "kind": "PodSecurityPolicyReview",
+      "verbs": [
+        "create"
+      ]
+    },
+    {
+      "name": "podsecuritypolicyselfsubjectreviews",
+      "namespaced": true,
+      "kind": "PodSecurityPolicySelfSubjectReview",
+      "verbs": [
+        "create"
+      ]
+    },
+    {
+      "name": "podsecuritypolicysubjectreviews",
+      "namespaced": true,
+      "kind": "PodSecurityPolicySubjectReview",
+      "verbs": [
+        "create"
+      ]
+    },
+    {
+      "name": "policies",
+      "namespaced": true,
+      "kind": "Policy",
+      "verbs": [
+        "create",
+        "delete",
+        "deletecollection",
+        "get",
+        "list",
+        "patch",
+        "update",
+        "watch"
+      ]
+    },
+    {
+      "name": "policybindings",
+      "namespaced": true,
+      "kind": "PolicyBinding",
+      "verbs": [
+        "create",
+        "delete",
+        "deletecollection",
+        "get",
+        "list",
+        "patch",
+        "update",
+        "watch"
+      ]
+    },
+    {
+      "name": "processedtemplates",
+      "namespaced": true,
+      "kind": "Template",
+      "verbs": [
+        "create"
+      ]
+    },
+    {
+      "name": "projectrequests",
+      "namespaced": false,
+      "kind": "ProjectRequest",
+      "verbs": [
+        "create",
+        "list"
+      ]
+    },
+    {
+      "name": "projectrequests",
+      "namespaced": false,
+      "kind": "Project",
+      "verbs": [
+        "create",
+        "delete",
+        "get",
+        "list",
+        "patch",
+        "update",
+        "watch"
+      ]
+    },
+    {
+      "name": "resourceaccessreviews",
+      "namespaced": true,
+      "kind": "ResourceAccessReview",
+      "verbs": [
+        "create"
+      ]
+    },
+    {
+      "name": "rolebindingrestrictions",
+      "namespaced": true,
+      "kind": "RoleBindingRestriction",
+      "verbs": [
+        "create",
+        "delete",
+        "deletecollection",
+        "get",
+        "list",
+        "patch",
+        "update",
+        "watch"
+      ]
+    },
+    {
+      "name": "rolebindings",
+      "namespaced": true,
+      "kind": "RoleBinding",
+      "verbs": [
+        "create",
+        "delete",
+        "get",
+        "list",
+        "patch",
+        "update"
+      ]
+    },
+    {
+      "name": "roles",
+      "namespaced": true,
+      "kind": "Role",
+      "verbs": [
+        "create",
+        "delete",
+        "get",
+        "list",
+        "patch",
+        "update"
+      ]
+    },
+    {
+      "name": "routes",
+      "namespaced": true,
+      "kind": "Route",
+      "verbs": [
+        "create",
+        "delete",
+        "deletecollection",
+        "get",
+        "list",
+        "patch",
+        "update",
+        "watch"
+      ]
+    },
+    {
+      "name": "routes/status",
+      "namespaced": true,
+      "kind": "Route",
+      "verbs": [
+        "get",
+        "patch",
+        "update"
+      ]
+    },
+    {
+      "name": "selfsubjectrulesreviews",
+      "namespaced": true,
+      "kind": "SelfSubjectRulesReview",
+      "verbs": [
+        "create"
+      ]
+    },
+    {
+      "name": "subjectaccessreviews",
+      "namespaced": true,
+      "kind": "SubjectAccessReview",
+      "verbs": [
+        "create"
+      ]
+    },
+    {
+      "name": "subjectrulesreviews",
+      "namespaced": true,
+      "kind": "SubjectRulesReview",
+      "verbs": [
+        "create"
+      ]
+    },
+    {
+      "name": "templates",
+      "namespaced": true,
+      "kind": "Template",
+      "verbs": [
+        "create",
+        "delete",
+        "deletecollection",
+        "get",
+        "list",
+        "patch",
+        "update",
+        "watch"
+      ]
+    },
+    {
+      "name": "useridentitymappings",
+      "namespaced": false,
+      "kind": "UserIdentityMapping",
+      "verbs": [
+        "create",
+        "delete",
+        "get",
+        "patch",
+        "update"
+      ]
+    },
+    {
+      "name": "users",
+      "namespaced": false,
+      "kind": "User",
+      "verbs": [
+        "create",
+        "delete",
+        "deletecollection",
+        "get",
+        "list",
+        "patch",
+        "update",
+        "watch"
+      ]
+    }
+  ]
+}
